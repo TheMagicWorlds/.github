@@ -167,8 +167,8 @@ Magic Worlds is an **open-source** project, and we welcome community engagement!
 - **Facebook:** [Magic Worlds](https://www.facebook.com/MagikWorlds)  
 - **Twitter:** [@magicworlds3](https://x.com/magicworlds3)  
 - **YouTube:** [Magic Worlds TV](https://youtube.com/@magicworldstv?si=FHtkbuWJh5aYKmQy)  
-- **Reddit:** [u/Play2World](https://www.reddit.com/user/Play2World/)  
-- **Telegram:** [@Play2World](https://t.me/Play2World)  
+- **Reddit:** [u/MagicWorlds](https://www.reddit.com/user/MagicWorlds_/)  
+- **TikTok:** [@MagicWorlds](https://www.tiktok.com/@magicworldsonline)  
 - **LinkedIn:** [Magic Worlds](https://www.linkedin.com/company/magic-worlds/)
 
 ---
