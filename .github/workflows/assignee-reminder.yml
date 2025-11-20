@@ -5,6 +5,10 @@ on:
   issues:
     types: [assigned]
 
+# Grant the GITHUB_TOKEN permission to write to issues (required to post comments)
+permissions:
+  issues: write
+
 jobs:
   post-reminder-comment:
     runs-on: ubuntu-latest
@@ -14,15 +18,15 @@ jobs:
         with:
           # This automatically gets the number of the issue that was just assigned.
           issue-number: ${{ github.event.issue.number }}
-          # This is the message that will be posted. We are tagging the new assignee.
+          # Use issue.assignee as a safer fallback for the assigned user
           body: |
-            Hi @${{ github.event.assignee.login }}, welcome to the task!
+            Hi @${{ github.event.issue.assignee.login }}, welcome to the task!
 
             As a reminder, here is our rapid development workflow for every task:
             > **USE AI: 30 MINS PER DAY**
             > 1.  **FOCUS DAY:** Understand the goal.
             > 2.  **BRAINSTORM:** Use AI to explore solutions.
-            > 3.  **SELECT:** Choose a task or world you want to improve.
+            > 3.  **SELECT:** Select a task or world to improve
             > 4.  **POC PROTOTYPE:** Build a quick proof-of-concept.
             > 5.  **TEST:** Get user feedback.
             > 6.  **DEMO:** Present results to stakeholders.
