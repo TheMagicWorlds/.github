@@ -1,7 +1,6 @@
 name: New Task Assignment Reminder
 
 on:
-  # This tells the action to run ONLY when an issue is assigned.
   issues:
     types: [assigned]
 
@@ -12,15 +11,26 @@ permissions:
 jobs:
   post-reminder-comment:
     runs-on: ubuntu-latest
+    # compute a best-effort assignee and expose as env for steps
+    env:
+      ASSIGNEE: ${{ github.event.assignee.login || github.event.issue.assignee.login || github.actor }}
     steps:
+      - name: Dump event payload for debugging
+        run: |
+          echo "=== GITHUB_EVENT_PATH ==="
+          cat "$GITHUB_EVENT_PATH"
+          echo "=== end event payload ==="
+      - name: Show computed assignee
+        run: |
+          echo "Computed ASSIGNEE: $ASSIGNEE"
+      # Only attempt to post if we have an assignee
       - name: Post Workflow Reminder Comment
+        if: ${{ env.ASSIGNEE != '' && env.ASSIGNEE != null }}
         uses: peter-evans/create-or-update-comment@v4
         with:
-          # This automatically gets the number of the issue that was just assigned.
           issue-number: ${{ github.event.issue.number }}
-          # Use issue.assignee as a safer fallback for the assigned user
           body: |
-            Hi @${{ github.event.issue.assignee.login }}, welcome to the task!
+            Hi @${{ env.ASSIGNEE }}, welcome to the task!
 
             As a reminder, here is our rapid development workflow for every task:
             > **USE AI: 30 MINS PER DAY**
